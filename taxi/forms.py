@@ -1,16 +1,17 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import RegexValidator
 
-from taxi.models import Car, Driver
+from taxi.models import Car
+
+
+Driver = get_user_model()
 
 
 license_number_validator = RegexValidator(
     regex=r"^[A-Z]{3}\d{5}$",
-    message=(
-        "License number must contain exactly "
-        "3 uppercase letters and 5 digits."
-    ),
+    message="License number must contain 3 uppercase letters and 5 digits.",
 )
 
 
